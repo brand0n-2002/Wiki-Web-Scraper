@@ -50,12 +50,28 @@ for heading in soup.findAll("h2"):
                         print("Reference:", text.text)
 
                         #Generic reference link is modified to correct URL encoding
+
+                        # Parenthesis adjustment
                         if "(" in text["href"]:
                             output = output.replace("(", "%28").replace(")", "%29")
+
+                        # Apostrophe adjustment
                         if "'" in text["href"]:
                             output = output.replace("'", "%27")
-                        if "-" in text["href"]:
-                            output = output.replace("-","%2")
+
+                        # Quote adjustment
+                        if '"' in text["href"]:
+                            output = output.replace("'", "%22")
+
+                        # En dash adjustment
+                        if "–" in text["href"]:
+                            output = output.replace("–", "%E2%80%93")
+
+                        # Em dash adjustment
+                        if "—" in text["href"]:
+                            output = output.replace("—", "%E2%80%94")
+
+                        # "output" (link) is printed
                         print(output)
 
                     #Wikipedia
